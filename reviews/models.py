@@ -17,3 +17,8 @@ class Review(TimeStampModel):
     
     def __str__(self) -> str:
         return f'{self.review} - {self.room}'
+    
+    def rating_average(self):
+        avg=(self.accuracy + self.communication + self.cleanliness 
+             + self.location + self.check_in + self.value)/6
+        return avg

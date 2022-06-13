@@ -15,5 +15,5 @@ class CustomeUserAdmin(UserAdmin):
         }),
     )
 
-    list_display = ('username', 'currency', 'language', 'supperhost', 'gender')
+    list_display = ('username', 'currency', 'language', 'supperhost', 'gender', 'email')
     list_filter = ('supperhost', 'language')

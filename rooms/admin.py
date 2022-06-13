@@ -6,7 +6,67 @@ from .models import Room, RoomType, Facility, Amenity, HouseRule, Photo
 
 @admin.register(Room)
 class RoomAdmin(admin.ModelAdmin):
-    pass
+    
+    fieldsets = (
+        ('Basic Info', {
+            "fields": (
+                'name','country','city' ,'price','address'
+            ),
+           
+        }),
+        
+        ('Times', {
+            "fields": (
+                 'check_in',
+                    'check_out',
+                    'instan_book'
+            ),
+           
+        }),
+         ('Spaces', {
+            "fields": (
+                 'guest', 'beds', 'bath'
+            ),
+           
+        }),
+         
+          ('Last Details', {
+            "fields": (
+                 'host', 
+            ),
+           
+        }),
+        
+         ('More About the Space ', {
+            'classes': ('collapse',),
+            "fields": (
+               
+                 'amenties', 'facilities', 'houseRules'
+            ),
+           
+        }),
+         
+         
+        
+
+    )
+    
+    list_display= ('name','country','city' ,'price','address','beds',
+                    'bath',
+                    'bedrooms',
+                    'guest',
+                    'check_in',
+                    'check_out',
+                    'instan_book', 'count_amenties')
+    list_filter=('instan_book',)
+    search_fields=('city', )
+    filter_horizontal=('amenties', 'facilities', 'houseRules')
+    
+    def count_amenties(self, obj):
+        return obj.amenties.count()
+    
+    
+    
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
@@ -14,4 +74,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
 @admin.register(RoomType, Amenity, Facility,HouseRule )
 class ItemAdmin(admin.ModelAdmin):
-    pass
+  
+    def used_by(self,obj):
+        return obj.rooms.count()
+    list_display=('name','used_by')

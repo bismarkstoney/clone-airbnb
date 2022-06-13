@@ -11,6 +11,7 @@ from users.models import User
 # Create your models here.
 
 
+
 class AbstractItem(core_models.TimeStampModel):
     name = models.CharField(max_length=150)
 
@@ -42,7 +43,7 @@ class Facility(AbstractItem):
 class Photo(core_models.TimeStampModel):
     caption=CharField(max_length=250)
     file=models.ImageField()
-    room= models.ForeignKey("Room", on_delete=models.CASCADE)
+    room= models.ForeignKey("Room", on_delete=models.CASCADE, related_name='photos')
     def __str__(self) -> str:
         return  self.title
     
@@ -64,11 +65,11 @@ class Room(core_models.TimeStampModel):
     check_in = models.TimeField()
     check_out = models.TimeField()
     instan_book = models.BooleanField(default=False)
-    host = models.ForeignKey(User, on_delete=models.CASCADE)
-    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True)
-    amenties= models.ManyToManyField(Amenity, blank=True)
-    houseRules=models.ManyToManyField(HouseRule, blank=True)
-    facilities=models.ManyToManyField(Facility, blank=True)
+    host = models.ForeignKey(User, on_delete=models.CASCADE,related_name='rooms' )
+    room_type = models.ForeignKey(RoomType, on_delete=models.SET_NULL, null=True, related_name='rooms')
+    amenties= models.ManyToManyField(Amenity, blank=True,related_name='rooms' )
+    houseRules=models.ManyToManyField(HouseRule, blank=True, related_name='rooms')
+    facilities=models.ManyToManyField(Facility, blank=True, related_name='rooms')
 
     def __str__(self) -> str:
         return self.name

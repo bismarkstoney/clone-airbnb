@@ -5,7 +5,7 @@ class Conversation(TimeStampModel):
     participants= models.ManyToManyField("users.User",blank=True)
     
     def __str__(self) -> str:
-        return self.created_at
+        return str(self.created_at)
 
 class Message(TimeStampModel):
     message= models.TextField()
