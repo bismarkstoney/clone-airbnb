@@ -57,7 +57,7 @@ class RoomAdmin(admin.ModelAdmin):
                     'guest',
                     'check_in',
                     'check_out',
-                    'instan_book', 'count_amenties')
+                    'instan_book', 'count_amenties','total_rating')
     list_filter=('instan_book',)
     search_fields=('city', )
     filter_horizontal=('amenties', 'facilities', 'houseRules')
