@@ -5,4 +5,4 @@ from .models import List
 
 @admin.register(List)
 class AdminList(admin.ModelAdmin):
-    pass
+    list_display=('name','user', 'count_rooms')

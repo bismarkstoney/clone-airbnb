@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from core.models import TimeStampModel
 # Create your models here.
 
@@ -25,5 +26,19 @@ class Reservation(TimeStampModel):
     check_out=models.DateField()
     
     def __str__(self) -> str:
-        return f'{self.room} - {self.check_in}'
+        return f'{self.room}'
+    
+    def processing(self):
+        now =timezone.now().date()
+        print(now)
+        print(self.check_out)
+        if now >= self.check_in and now <= self.check_out:
+            return 'In Progess'
+        elif now > self.check_out:
+            return  'Room is Empty'
+       
+            
+    processing.short_description='Room Avalibility'
+    
+    
     
