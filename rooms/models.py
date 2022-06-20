@@ -41,11 +41,11 @@ class Facility(AbstractItem):
         verbose_name_plural='Facilities'
 
 class Photo(core_models.TimeStampModel):
-    caption=CharField(max_length=250)
-    file=models.ImageField()
+    caption=models.CharField(max_length=250, blank=True, null=True)
+    file=models.ImageField(upload_to='rooms')
     room= models.ForeignKey("Room", on_delete=models.CASCADE, related_name='photos')
     def __str__(self) -> str:
-        return  self.title
+        return  self.caption
     
 
 
@@ -53,6 +53,7 @@ class Room(core_models.TimeStampModel):
 
     """Room model Defination"""
     name = models.CharField(max_length=250)
+    
     country = CountryField()
     description = models.TextField()
     city = models.CharField(max_length=250)
@@ -73,11 +74,18 @@ class Room(core_models.TimeStampModel):
 
     def __str__(self) -> str:
         return self.name
+    
+    def save(self,*args, **kwargs):
+        self.city=str.capitalize(self.city)
+        super().save(*args, **kwargs)
+    
+    
     def total_rating(self):
         all_reviews=self.reviews.all()
         all_rating=0
-        for review in all_reviews:
-            print(review)
-            all_rating +=review.rating_average()
-        return all_rating/len(all_reviews)
+        if len(all_reviews)> 0:
+            for review in all_reviews:
+                all_rating +=review.rating_average()
+            return all_rating/len(all_reviews)
+        return 0
             

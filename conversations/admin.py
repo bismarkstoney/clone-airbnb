@@ -4,8 +4,17 @@ from .models import Message, Conversation
 
 @admin.register(Message)
 class AdminMessage(admin.ModelAdmin):
-    pass
+    
+    """Conversation Admin Defination"""
+    list_display=("__str__",)
+    
+    
 
 @admin.register(Conversation)
 class AdminConversation(admin.ModelAdmin):
-    pass
+    
+    """Conversation Admin Defination"""
+    list_display=("__str__",'count_message', 'count_participants')
+    
+   
+    

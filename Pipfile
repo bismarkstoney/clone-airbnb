@@ -10,6 +10,8 @@ autopep8 = "*"
 django = "==4.0.5"
 pillow = "*"
 django-countries = "*"
+django-seed = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.8"

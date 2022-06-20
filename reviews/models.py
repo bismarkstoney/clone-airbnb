@@ -15,6 +15,7 @@ class Review(TimeStampModel):
     room=models.ForeignKey("rooms.Room", on_delete=models.CASCADE, related_name='reviews')  
     
     
+    
     def __str__(self) -> str:
         return f'{self.review} - {self.room}'
     

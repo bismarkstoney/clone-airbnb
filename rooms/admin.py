@@ -1,5 +1,6 @@
 from pyexpat import model
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from .models import Room, RoomType, Facility, Amenity, HouseRule, Photo
 # Register your models here.
 
@@ -65,12 +66,19 @@ class RoomAdmin(admin.ModelAdmin):
     def count_amenties(self, obj):
         return obj.amenties.count()
     
+    # def save_model(self, request, obj, form, change):
+    #     print(obj, change, form)
+    #     return super().save_model(request, obj, form, change)
+    
     
     
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
-    pass
+    list_display=('caption', 'room', '__str__', 'get_thumnail')
+    
+    def get_thumnail(self,obj):
+        return mark_safe(f'<img width="50px" height="50px" src="{obj.file.url}"/>')
 
 @admin.register(RoomType, Amenity, Facility,HouseRule )
 class ItemAdmin(admin.ModelAdmin):

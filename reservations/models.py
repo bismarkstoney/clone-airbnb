@@ -30,14 +30,14 @@ class Reservation(TimeStampModel):
     
     def processing(self):
         now =timezone.now().date()
-        print(now)
-        print(self.check_out)
+        # print(now)
+        # print(self.check_out)
         if now >= self.check_in and now <= self.check_out:
             return 'In Progess'
         elif now > self.check_out:
             return  'Room is Empty'
        
-            
+    # This name will show inn the admin       
     processing.short_description='Room Avalibility'
     
     
