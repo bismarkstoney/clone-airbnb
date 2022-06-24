@@ -1,9 +1,11 @@
 from django.urls import path, re_path
-from core.views import room_detail
+from .views import  HomeView, Room_Detail, search
 
 app_name='rooms'
 
 
 urlpatterns = [
-    path('<int:pk>/',room_detail, name='detail' )
+    path('', HomeView.as_view(), name='home'),
+    path('<int:pk>',Room_Detail.as_view(), name='detail' ),
+    path('search/',search, name='search' )
 ]
