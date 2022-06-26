@@ -17,6 +17,7 @@ class Login(FormView):
         user = authenticate(self.request, username=email, password=password)
         if user is not None:
             login(self.request, user)
+        # user.verify_email(email)
         return super().form_valid(form)
 
     def get_success_url(self):

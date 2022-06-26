@@ -1,7 +1,7 @@
-from distutils.command.upload import upload
-from tkinter import CURRENT
+import uuid
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.mail import send_mail
 # Create your models here.
 
 
@@ -40,3 +40,14 @@ class User(AbstractUser):
     currency = models.CharField(
         max_length=5, choices=CURRENCY_CHOICES, blank=True)
     supperhost = models.BooleanField(default=False)
+    email_verified=models.BooleanField(default=False)
+    email_secret=models.CharField(max_length=120, default="", blank=True)
+    
+    
+    def verify_email(self):
+        if self.email_verified is False:
+            secret=uuid.uuid4().hex[:20]
+            self.email_secret=secret
+            send_mail('Verify Fie account', 'Verify account', 'd764f096d41192', [self.email], fail_silently=False)
+        return 
+    
