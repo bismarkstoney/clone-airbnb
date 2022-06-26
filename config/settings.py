@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-qbwm@p%*e0-8m=81e3maqv5y$9-e*#uzz5zu#zf9g7c6ae)&^%'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -140,3 +140,8 @@ AUTH_USER_MODEL = 'users.User'
 
 MEDIA_URL= '/media/' 
 MEDIA_ROOT=os.path.join(BASE_DIR , 'uploads')
+
+EMAIL_HOST = 'smtp.mailtrap.io'
+EMAIL_HOST_USER =os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = '2525'

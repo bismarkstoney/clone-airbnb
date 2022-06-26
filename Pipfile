@@ -12,6 +12,7 @@ pillow = "*"
 django-countries = "*"
 django-seed = "*"
 psycopg2 = "*"
+django-dotenv = "==1.4.2"
 
 [requires]
 python_version = "3.8"
