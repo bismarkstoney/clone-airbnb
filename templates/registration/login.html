@@ -3,7 +3,7 @@
 {% block page_name %}Login{% endblock page_name %}
 
 {% block content %}
-<form action=" {% url 'users:login' %}"  method='POST'>
+<form action=" {% url 'login' %}"  method='POST'>
 
     {% csrf_token %}
 

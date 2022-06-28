@@ -26,7 +26,7 @@ class RoomAdmin(admin.ModelAdmin):
         }),
          ('Spaces', {
             "fields": (
-                 'guest', 'beds', 'bath'
+                 'guest', 'beds', 'bath', 'bedrooms'
             ),
            
         }),

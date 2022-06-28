@@ -1,6 +1,7 @@
 
-from cProfile import label
+from django.contrib.auth import get_user_model
 from django import forms
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from .models import User
 
 
@@ -64,4 +65,14 @@ class SignUpForm(forms.ModelForm):
         user.set_password(password)
         user.save()
     
-            
+
+
+class CustomeUserCreationForm(UserCreationForm):
+    class Meta:
+        model=get_user_model()
+        fields=('email', 'username')
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model=get_user_model()
+        fields=('email', 'username')
+        
