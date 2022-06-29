@@ -13,7 +13,8 @@ django-countries = "*"
 django-seed = "*"
 psycopg2 = "*"
 django-dotenv = "==1.4.2"
-django-allauth = "==0.51.0"
+django-allauth = "*"
+django-tailwind = "*"
 
 [requires]
 python_version = "3.8"

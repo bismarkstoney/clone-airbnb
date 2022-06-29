@@ -46,9 +46,9 @@ from .forms import CustomeUserCreationForm, LoginForm, SignUpForm
 #         return super().form_valid(form)
     
     
-class SignupPageView(CreateView):
-    form_class=CustomeUserCreationForm
-    success_url=reverse_lazy('login')
-    template_name = "registration/login.html"
+# class SignupPageView(CreateView):
+#     form_class=CustomeUserCreationForm
+#     success_url=reverse_lazy('login')
+#     template_name = "registration/login.html"
     
         
