@@ -8,13 +8,14 @@ autopep8 = "*"
 
 [packages]
 django = "==4.0.5"
-pillow = "*"
-django-countries = "*"
-django-seed = "*"
-psycopg2 = "*"
+pillow = "9.1.1"
+django-countries = "7.3.2"
+django-seed = "0.3.1"
+psycopg2 = "2.9.3"
 django-dotenv = "==1.4.2"
-django-allauth = "*"
-django-tailwind = "*"
+django-allauth = "0.51.0"
+django-tailwind = "3.3.0"
+django-livereload-server = "*"
 
 [requires]
 python_version = "3.8"

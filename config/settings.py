@@ -43,12 +43,13 @@ INSTALLED_APPS = [
     "django_countries",
     "django_seed",
     'tailwind',
+    'clone',#Tailwing app name
     "allauth", # new
     "allauth.account", # new
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github', 
     'allauth.socialaccount.providers.google',
-
+    
     # local Apps
     'core.apps.CoreConfig',
     'users.apps.UsersConfig',
@@ -135,6 +136,10 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -151,7 +156,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-
+STATICFILES_DIRS=[os.path.join(BASE_DIR, 'static')]
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -179,3 +184,5 @@ ACCOUNT_AUTHENTICATION_METHOD = "email" # new
 ACCOUNT_EMAIL_REQUIRED = True # new
 ACCOUNT_UNIQUE_EMAIL = True # new
 #ACCOUNT_EMAIL_VERIFICATION = 'none'
+TAILWIND_APP_NAME = 'clone'
+NPM_BIN_PATH = r"C:\Program Files (x86)\nodejs\npm.cmd"
